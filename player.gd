@@ -5,8 +5,10 @@ extends CharacterBody3D
 @export var gravity: float = 20.0
 
 var _facing_angle: float
+var score: int
 
 @onready var model: MeshInstance3D = get_node("Model")
+@onready var score_label: Label = get_node("ScoreLabel")
 
 
 func _process(_delta) -> void:
@@ -46,3 +48,8 @@ func _physics_process(delta) -> void:
 func game_over() -> void:
 	# reload current scene
 	get_tree().reload_current_scene()
+
+
+func add_score(amount: int) -> void:
+	score += amount
+	score_label.text = "Score: " + str(score)
